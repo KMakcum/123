@@ -1,12 +1,9 @@
 jQuery(document).ready(function(){
     $( ".js-datepicker" ).datepicker();
 
-    $('.datepicker--cell-day').on('click', function () {
-        $(this).html()
+    $('.right_cost_popup .hide_show__popup').on('click', function () {
+        $(this).closest('.right_cost_popup').toggleClass('show')
     })
-    // $('.add__cost_item').on('click', function () {
-    //     $(this).find('.new__cost_item').slideToggle()
-    // })
 });
 
 

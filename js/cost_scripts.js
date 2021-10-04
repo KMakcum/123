@@ -76,39 +76,4 @@ jQuery(document).ready(function(){
         });
     }
 
-    function newCostForm() {
-        return '<div class="new__cost_item">\n' +
-            '       <form class="form__add_new_cost">\n' +
-            '           <input id="cost_value" class="cost_value" name="cost_value" type="text" placeholder="Сумма">\n' +
-            '           <button type="submit" class="add_cost_btn">Добавить</button>\n' +
-            '       </form>\n' +
-            '   </div>'
-    }
-
-    function newCategoryCostForm() {
-        return '<div class="new__cost_item">\n' +
-            '        <form class="form__add_new_category_cost">\n' +
-            '            <input class="cost_category_name" name="cost_category_name" type="text" placeholder="Название">\n' +
-            '            <input class="cost_value" name="cost_value" type="text" placeholder="Сумма">\n' +
-            '            <button type="submit" class="add_cost_btn">Добавить</button>\n' +
-            '        </form>\n' +
-            '    </div>'
-    }
-
-    function popupDayCost(data) {
-        $.each(data,function(index,value){
-
-            // действия, которые будут выполняться для каждого элемента массива
-            // index - это текущий индекс элемента массива (число)
-            // value - это значение текущего элемента массива
-
-            //выведем индекс и значение массива в консоль
-            console.log('Индекс: ' + index + '; Значение: ' + value);
-
-            $.each(value,function(index,value){
-                console.log('Индекс2: ' + index + '; Значение2: ' + value);
-
-            });
-        });
-    }
 });

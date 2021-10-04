@@ -41,18 +41,37 @@ button{
     position: absolute;
     top: 0;
     right: 0;
-    /*right: -100%;*/
-    padding: 5px;
+    padding: 10px;
     background: #fff;
-    border-radius: 8px;
+    transform: translateX(100%);
+    border-radius: 20px 0 0 20px;
     border: 1px solid var(--main-border-color);
     transition: all .3s;
     z-index: 999;
 }
 
 .right_cost_popup.show {
-    right: -100%;
+    transform: translateX(0);
+    -webkit-box-shadow: 0px 0px 16px 0px rgba(0,0,0,0.5);
+    -moz-box-shadow: 0px 0px 16px 0px rgba(0,0,0,0.5);
+    box-shadow: 0px 0px 16px 0px rgba(0,0,0,0.5);
 }
+
+.right_cost_popup .hide_show__popup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translate(-100%, -50%);
+    width: 15px;
+    height: 100px;
+    background: #fff;
+    border: 0;
+    border-radius: 15px 0 0 15px;
+}
+
 
 .admin-bar .right_cost_popup {
     top: 32px;
@@ -69,6 +88,23 @@ button{
     padding: 8px;
     border: 1px solid var(--main-border-color);
 }
+
+.expenses_list {
+    padding: 15px;
+    margin: 15px 0;
+}
+.expenses_category .expenses_category__name {
+    font-size: 18px;
+    line-height: 1.5;
+    text-align: center;
+    border-bottom: 1px solid var(--main-border-color);
+}
+.expenses_category .expenses_category__amount {
+    line-height: 1.5;
+    text-align: right;
+    padding: 10px;
+}
+
 
 .list_cost {
 

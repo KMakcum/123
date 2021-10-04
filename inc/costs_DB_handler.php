@@ -130,7 +130,7 @@ class TabFinanceCostTable {
     }
 
     /**
-     * Возвращает данные по полю "cost_cr_date"
+     * Возвращает массив расходов за определенный день
      *
      * @param $cost_cr_date
      * @format 01.01.2000
@@ -142,6 +142,23 @@ class TabFinanceCostTable {
         $table_name = 'tf_userdates';
         $field = 'cost_cr_date';
         $data = $this->get_tf_table_field($table_name, $cost_cr_date , $field)[0];
+        $data['cost_data'] = json_decode($data['cost_data'],true);
+
+        return $data;
+    }
+
+    /**
+     * Возвращает массив расходов за определенный день
+     *
+     * @param $cost_cr_date
+     * @format 01.01.2000
+     *
+     * @return array
+     */
+    function get_data_by_user($user_id)
+    {
+        $table_name = 'tf_userdates';
+        $data = $this->get_tf_table_field($table_name, $user_id )[0];
         $data['cost_data'] = json_decode($data['cost_data'],true);
 
         return $data;
@@ -249,6 +266,5 @@ class TabFinanceCostTable {
         return true;
     }
 
-//todo: удалять записи из базы
 
 }

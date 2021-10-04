@@ -60,4 +60,15 @@ class TabFinanceBackend {
         print_r('</pre>');
         print_r('-------------');
     }
+
+
+    /**
+     * Собирает в расходы в читабельный массив
+     *
+     * @param array $arr
+     *
+     */
+    function f ($arr) {
+
+    }
 }
