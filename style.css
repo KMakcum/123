@@ -1,0 +1,124 @@
+/*
+Theme Name: TabFinance
+Author: KMax
+Version: 1.0
+Text Domain: TabFinance
+*/
+
+:root {
+    --main-bg-color: #929191;
+    --main-text-color: #313131;
+    --main-border-color: #7e7e7e;
+}
+
+body {
+    font-family: "OpenSans", sans-serif;
+    font-size: 16px;
+    background: var(--main-bg-color);
+}
+
+button{
+    display: block;
+    max-width: 100%;
+    text-align: center;
+    font-family: "OpenSans", sans-serif;
+    font-size: 14px;
+    outline: 0;
+    border: 1px solid #000;
+    background: transparent;
+    cursor: pointer;
+    padding: 5px;
+    margin: 0 auto;
+}
+
+
+.week-days__datepicker {
+    opacity: 1;
+    left: 0;
+}
+
+.right_cost_popup {
+    position: absolute;
+    top: 0;
+    right: 0;
+    /*right: -100%;*/
+    padding: 5px;
+    background: #fff;
+    border-radius: 8px;
+    border: 1px solid var(--main-border-color);
+    transition: all .3s;
+    z-index: 999;
+}
+
+.right_cost_popup.show {
+    right: -100%;
+}
+
+.admin-bar .right_cost_popup {
+    top: 32px;
+}
+.cost_popup__header {
+    text-align: center;
+}
+.cost_popup__header .title_popup {
+    margin: 8px 0;
+}
+.cost_popup__header .cost_date_input input {
+    max-width: 120px;
+    text-align: center;
+    padding: 8px;
+    border: 1px solid var(--main-border-color);
+}
+
+.list_cost {
+
+}
+.list_cost .cost_item,
+.list_cost .add__cost_category_item {
+    position: relative;
+    transition: all .3s;
+}
+.list_cost .cost_item:hover {
+    background: #c7c7c7;
+    -webkit-box-shadow: inset 0px 0px 10px -5px rgba(0,0,0,0.5);
+    -moz-box-shadow: inset 0px 0px 10px -5px rgba(0,0,0,0.5);
+    box-shadow: inset 0px 0px 10px -5px rgba(0,0,0,0.5);
+}
+.list_cost .cost_item .cost_btn {
+    display: flex;
+    align-items: center;
+    font-size: 0;
+    padding: 5px;
+    margin: 0;
+    border: 0;
+}
+.list_cost .cost_item .cost_btn svg {
+    fill: none;
+    stroke: #9c9c9c;
+    stroke-width: 2px;
+}
+.list_cost .cost_item span {
+    font-size: 16px;
+    line-height: 120%;
+}
+.cost_item .new__cost_item {
+    position: absolute;
+    right: calc(100% + 5px);
+    top: 0;
+    max-width: 150px;
+    background: #fff;
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid var(--main-border-color);
+}
+.new__cost_item input {
+    width: calc(100% - 20px);
+    min-width: 100px;
+    border: 1px solid var(--main-border-color);
+    border-radius: 5px;
+    padding: 5px;
+    margin-bottom: 10px;
+    font-size: 12px;
+}
+.new__cost_item .add_cost_btn{
+}
