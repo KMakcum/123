@@ -36,7 +36,6 @@ $fields = helper()->cost_table->get_tf_table_field('tf_usercat', 1, 'user_id');
 
 helper()->backend->print_arr($fields);
 helper()->backend->print_arr($cost_data);
-echo 111;
 /////////////
 ?>
     <div class="week-days__datepicker datepicker js-datepicker"></div><!-- / .datepicker -->
