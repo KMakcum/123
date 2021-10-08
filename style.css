@@ -4,14 +4,21 @@ Author: KMax
 Version: 1.0
 Text Domain: TabFinance
 */
+* {
+    box-sizing: border-box;
+}
 
 :root {
     --main-bg-color: #929191;
     --main-text-color: #313131;
+    --main-text-title-color: #020933;
     --main-border-color: #7e7e7e;
 }
 
 body {
+    position: relative;
+    width: 100%;
+    min-height: 100vh;
     font-family: "OpenSans", sans-serif;
     font-size: 16px;
     background: var(--main-bg-color);
@@ -24,20 +31,151 @@ button{
     font-family: "OpenSans", sans-serif;
     font-size: 14px;
     outline: 0;
-    border: 1px solid #000;
+    border: 1px solid var(--main-border-color);
     background: transparent;
     cursor: pointer;
     padding: 5px;
     margin: 0 auto;
 }
 
+#wpadminbar {
+    display: none;
+}
 
 .week-days__datepicker {
     opacity: 1;
-    left: 0;
+    /*left: 0;*/
 }
 
+.right_sidebar {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 240px;
+    height: 100%;
+    padding: 6px 14px;
+    background: #fdf9f4;
+}
+.right_sidebar__header,
+.right_sidebar__body,
+.right_sidebar__footer {
+    margin: 15px 0;
+}
+.right_sidebar__header .logo_content {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--main-text-title-color);
+    text-decoration: none;
+}
+.right_sidebar__header .logo_content i{
+    font-size: 24px;
+    margin-right: 5px;
+}
+.right_sidebar__header .logo_content .logo_name{
+    font-size: 20px;
+    font-weight: 400;
+}
+.expenses_date {
+    margin-top: 20px;
+    text-align: center;
+}
+.expenses_date .expenses_date__title {
+    font-size: 16px;
+    line-height: 22px;
+}
+.expenses_date .expenses_date__field input.expenses_date__input {
+    text-align: center;
+    padding: 8px 8px 4px 8px;
+    background: transparent;
+    border-bottom: 1px solid var(--main-border-color);
+}
+
+.right_sidebar__body ul.expenses_list {
+}
+.expenses_list li.expenses_category {
+    max-height: 100px;
+    margin: 0 5px;
+    padding: 5px;
+    font-size: 16px;
+    line-height: 20px;
+    text-align: right;
+    border-radius: 12px;
+}
+.expenses_list li.expenses_category .category_name {
+    width: 100%;
+}
+.expenses_list li.expenses_category .category__amount {
+}
+.expenses_list li.expenses_category .category__amount i {
+}
+.expenses_list li.add_new__expenses_category .expenses_btn__trigger {
+    max-width: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 5px;
+    margin-left: auto;
+    border: 1px solid;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all .3s;
+}
+.expenses_list li.add_new__expenses_category .expenses_btn__trigger:hover {
+    background: #edeceb;
+    -webkit-box-shadow: inset 0px 0px 5px 3px rgba(0,0,0,0.3);
+    -moz-box-shadow: inset 0px 0px 5px 3px rgba(0,0,0,0.3);
+    box-shadow: inset 0px 0px 5px 3px rgba(0,0,0,0.3);
+}
+.expenses_list li.add_new__expenses_category .expenses_btn__trigger i {
+    font-size: 22px;
+    line-height: 22px;
+}
+.new__expenses_list {
+    margin: 15px 0;
+}
+.new__expenses_list li.new__expenses_category {
+    padding: 5px 0;
+}
+.new__expenses_list li.new__expenses_category .new__expenses_category--name {
+    padding: 3px 0;
+    cursor: pointer;
+}
+li.new__expenses_category .new__expenses_category--name span {
+    position: relative;
+}
+li.new__expenses_category .new__expenses_category--name span:after {
+    position: absolute;
+    content: '';
+    bottom: -4px;
+    right: 0;
+    width: 0;
+    height: 2px;
+    background: var(--main-border-color);
+    transition: all .1s;
+}
+li.new__expenses_category .new__expenses_category--name:hover span:after {
+    width: 100%;
+}
+li.new__expenses_category .form_add__expenses_category {
+    padding: 10px 0;
+    border-top: 2px solid var(--main-border-color);
+    border-bottom: 2px solid var(--main-border-color);
+}
+li.new__expenses_category .form_add__expenses_category input {
+    background: transparent;
+    padding: 10px 5px;
+    margin-bottom: 10px;
+    border: 1px solid var(--main-border-color);
+}
+
+
+
+
+
 .right_cost_popup {
+    display: none;
     position: absolute;
     top: 0;
     right: 0;
@@ -57,104 +195,104 @@ button{
     box-shadow: 0px 0px 16px 0px rgba(0,0,0,0.5);
 }
 
-.right_cost_popup .hide_show__popup {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: absolute;
-    top: 50%;
-    left: 0;
-    transform: translate(-100%, -50%);
-    width: 15px;
-    height: 100px;
-    background: #fff;
-    border: 0;
-    border-radius: 15px 0 0 15px;
-}
+/*.right_cost_popup .hide_show__popup {*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    justify-content: center;*/
+/*    position: absolute;*/
+/*    top: 50%;*/
+/*    left: 0;*/
+/*    transform: translate(-100%, -50%);*/
+/*    width: 15px;*/
+/*    height: 100px;*/
+/*    background: #fff;*/
+/*    border: 0;*/
+/*    border-radius: 15px 0 0 15px;*/
+/*}*/
 
 
-.admin-bar .right_cost_popup {
-    top: 32px;
-}
-.cost_popup__header {
-    text-align: center;
-}
-.cost_popup__header .title_popup {
-    margin: 8px 0;
-}
-.cost_popup__header .cost_date_input input {
-    max-width: 120px;
-    text-align: center;
-    padding: 8px;
-    border: 1px solid var(--main-border-color);
-}
+/*.admin-bar .right_cost_popup {*/
+/*    top: 32px;*/
+/*}*/
+/*.cost_popup__header {*/
+/*    text-align: center;*/
+/*}*/
+/*.cost_popup__header .title_popup {*/
+/*    margin: 8px 0;*/
+/*}*/
+/*.cost_popup__header .cost_date_input input {*/
+/*    max-width: 120px;*/
+/*    text-align: center;*/
+/*    padding: 8px;*/
+/*    border: 1px solid var(--main-border-color);*/
+/*}*/
 
-.expenses_list {
-    padding: 15px;
-    margin: 15px 0;
-}
-.expenses_category .expenses_category__name {
-    font-size: 18px;
-    line-height: 1.5;
-    text-align: center;
-    border-bottom: 1px solid var(--main-border-color);
-}
-.expenses_category .expenses_category__amount {
-    line-height: 1.5;
-    text-align: right;
-    padding: 10px;
-}
+/*.expenses_list {*/
+/*    !*padding: 15px;*!*/
+/*    !*margin: 15px 0;*!*/
+/*}*/
+/*.expenses_category .expenses_category__name {*/
+/*    font-size: 18px;*/
+/*    line-height: 1.5;*/
+/*    text-align: center;*/
+/*    border-bottom: 1px solid var(--main-border-color);*/
+/*}*/
+/*.expenses_category .expenses_category__amount {*/
+/*    line-height: 1.5;*/
+/*    text-align: right;*/
+/*    padding: 10px;*/
+/*}*/
 
 
-.list_cost {
+/*.list_cost {*/
 
-}
-.list_cost .cost_item,
-.list_cost .add__cost_category_item {
-    position: relative;
-    transition: all .3s;
-}
-.list_cost .cost_item:hover {
-    background: #c7c7c7;
-    -webkit-box-shadow: inset 0px 0px 10px -5px rgba(0,0,0,0.5);
-    -moz-box-shadow: inset 0px 0px 10px -5px rgba(0,0,0,0.5);
-    box-shadow: inset 0px 0px 10px -5px rgba(0,0,0,0.5);
-}
-.list_cost .cost_item .cost_btn {
-    display: flex;
-    align-items: center;
-    font-size: 0;
-    padding: 5px;
-    margin: 0;
-    border: 0;
-}
-.list_cost .cost_item .cost_btn svg {
-    fill: none;
-    stroke: #9c9c9c;
-    stroke-width: 2px;
-}
-.list_cost .cost_item span {
-    font-size: 16px;
-    line-height: 120%;
-}
-.cost_item .new__cost_item {
-    position: absolute;
-    right: calc(100% + 5px);
-    top: 0;
-    max-width: 150px;
-    background: #fff;
-    padding: 10px;
-    border-radius: 8px;
-    border: 1px solid var(--main-border-color);
-}
-.new__cost_item input {
-    width: calc(100% - 20px);
-    min-width: 100px;
-    border: 1px solid var(--main-border-color);
-    border-radius: 5px;
-    padding: 5px;
-    margin-bottom: 10px;
-    font-size: 12px;
-}
-.new__cost_item .add_cost_btn{
-}
+/*}*/
+/*.list_cost .cost_item,*/
+/*.list_cost .add__cost_category_item {*/
+/*    position: relative;*/
+/*    transition: all .3s;*/
+/*}*/
+/*.list_cost .cost_item:hover {*/
+/*    background: #c7c7c7;*/
+/*    -webkit-box-shadow: inset 0px 0px 10px -5px rgba(0,0,0,0.5);*/
+/*    -moz-box-shadow: inset 0px 0px 10px -5px rgba(0,0,0,0.5);*/
+/*    box-shadow: inset 0px 0px 10px -5px rgba(0,0,0,0.5);*/
+/*}*/
+/*.list_cost .cost_item .cost_btn {*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*    font-size: 0;*/
+/*    padding: 5px;*/
+/*    margin: 0;*/
+/*    border: 0;*/
+/*}*/
+/*.list_cost .cost_item .cost_btn svg {*/
+/*    fill: none;*/
+/*    stroke: #9c9c9c;*/
+/*    stroke-width: 2px;*/
+/*}*/
+/*.list_cost .cost_item span {*/
+/*    font-size: 16px;*/
+/*    line-height: 120%;*/
+/*}*/
+/*.cost_item .new__cost_item {*/
+/*    position: absolute;*/
+/*    right: calc(100% + 5px);*/
+/*    top: 0;*/
+/*    max-width: 150px;*/
+/*    background: #fff;*/
+/*    padding: 10px;*/
+/*    border-radius: 8px;*/
+/*    border: 1px solid var(--main-border-color);*/
+/*}*/
+/*.new__cost_item input {*/
+/*    width: calc(100% - 20px);*/
+/*    min-width: 100px;*/
+/*    border: 1px solid var(--main-border-color);*/
+/*    border-radius: 5px;*/
+/*    padding: 5px;*/
+/*    margin-bottom: 10px;*/
+/*    font-size: 12px;*/
+/*}*/
+/*.new__cost_item .add_cost_btn{*/
+/*}*/

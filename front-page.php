@@ -11,6 +11,7 @@
  * @since 1.0
  * @version 1.0
  */
+//todo: вывести все дни
 //todo: добавлять записи на определенную дату
 //todo: удалять записи из базы
 
@@ -25,13 +26,83 @@ $cost_data_by_date = helper()->cost_table->get_data_by_date(date("d.m.Y", strtot
 $cost_data_by_user = helper()->cost_table->get_data_by_user(get_current_user_id());
 
 
-
+get_user_meta(1);
 helper()->backend->print_arr($cost_data_by_date);
 //helper()->backend->print_arr($cost_data);
 /////////////
 ?>
     <div class="week-days__datepicker datepicker js-datepicker"></div><!-- / .datepicker -->
 
+<div class="right_sidebar">
+    <div class="right_sidebar__header">
+        <a href="/" class="logo_content">
+            <i class='bx bx-analyse' ></i>
+            <div class="logo_name">TabFinance</div>
+        </a>
+        <div class="expenses_date">
+            <div class="expenses_date__title">Потрачено за</div>
+            <div class="expenses_date__field">
+                <input class="expenses_date__input" type="text" name="expenses_date__input"
+                       placeholder="<?php echo date("d.m.Y", strtotime('+3 hours'))?>"
+                       value="<?php echo date("d.m.Y", strtotime('+3 hours'))?>">
+            </div>
+        </div>
+    </div>
+    <div class="right_sidebar__body">
+        <div class="expenses">
+            <ul class="expenses_list">
+                <?php if (!empty($cost_data_by_user) && isset($cost_data_by_user)){
+                    foreach ($cost_data_by_user['cost_data'] as $cost_item) {?>
+                        <li class="expenses_category">
+                            <div class="category_name"><?php echo $cost_item['cost_category_name']?></div>
+                            <?php
+                            $total_amount = 0;
+                            foreach ($cost_item['cost_category_values'] as $cost_count) {
+                                $total_amount += $cost_count;
+                            }?>
+                            <div class="category__amount">
+                                <?php echo $total_amount?>
+                                <i class='bx bx-ruble' ></i>
+                            </div>
+                        </li>
+                    <?php }?>
+                    <li class="expenses_category add_new__expenses_category">
+                        <div class="expenses_btn expenses_btn__trigger" type="button">
+                            <i class='bx bx-chevron-left'></i>
+                            <span>Добавить</span>
+                        </div>
+                        <ul class="new__expenses_list" style="display: none">
+                            <?php if (!empty($categories) && isset($categories)) {
+                                foreach ($categories as $category) {?>
+                                    <li class="new__expenses_category" data-category="<?php echo $category['category_slug']?>">
+                                        <div class="new__expenses_category--name"><span><?php echo $category['category_name']?></span></div>
+                                        <div class="add__expenses_category" style="display: none">
+                                            <form class="form_add__expenses_category">
+                                                <input id="expenses_value" class="expenses_value" name="expenses_value" type="text" placeholder="Сумма">
+                                                <button type="submit" class="add_expenses_btn">Добавить</button>
+                                            </form>
+                                        </div>
+                                    </li>
+                                <?php }
+                            }?>
+                            <li class="new__expenses_category">
+                                <div class="new__expenses_category--name">Добавить новую</div>
+                                <div class="add__expenses_category" style="display: none">
+                                    <form class="form_add__expenses_category">
+                                        <input class="expenses_category_name" name="expenses_category_name" type="text" placeholder="Название">
+                                        <input class="expenses_value" name="expenses_value" type="text" placeholder="Сумма">
+                                        <button type="submit" class="add_expenses_category_btn">Добавить</button>
+                                    </form>
+                                </div>
+                            </li>
+                        </ul>
+                    </li>
+                <?php }?>
+            </ul>
+        </div>
+    </div>
+    <div class="right_sidebar__footer"></div>
+</div>
     <div class="right_cost_popup show">
         <div class="cost_popup__header">
             <div class="title_popup">Дата расходов</div>

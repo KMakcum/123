@@ -33,16 +33,10 @@ jQuery(document).ready(function(){
         });
     })
 
-    $('.cost_item .cost_btn').on('click', function () {
-        let $this = $(this).closest('.cost_item');
-        $('.new__cost_item').slideUp(0);
-        $this.find('.new__cost_item').slideDown();
-    })
-
-    $('.add__cost_item').on('click', '.form__add_new_cost button', function (e) {
+    $('.add_expenses_btn').on('click', function (e) {
         e.preventDefault();
-        let costCategoryName = $(this).closest('.add__cost_item').find('.cost_category_name').text()
-        let costCategorySlug = $(this).closest('.add__cost_item').data('category')
+        let costCategoryName = $(this).closest('.new__expenses_category').find('.new__expenses_category--name').text()
+        let costCategorySlug = $(this).closest('.new__expenses_category').data('category')
         let formData = new FormData();
         formData.append('action', 'set_new_cost');
         formData.append('cost_category_slug', costCategorySlug);
@@ -52,7 +46,7 @@ jQuery(document).ready(function(){
         ajaxSendCost(formData)
     })
 
-    $('.add__cost_category_item').on('click', '.form__add_new_category_cost button', function (e) {
+    $('.add_expenses_category_btn').on('click', function (e) {
         e.preventDefault();
         let formData = new FormData();
         formData.append('action', 'set_new_category_cost');
@@ -62,7 +56,6 @@ jQuery(document).ready(function(){
     })
 
     function ajaxSendCost(formData) {
-
         $.ajax({
             url: costAjaxSettings.ajax_url,
             method: 'POST',
@@ -72,6 +65,7 @@ jQuery(document).ready(function(){
             dataType: 'json',
             success: function (response) {
                 console.log(response);
+                window.location.reload()
             },
         });
     }

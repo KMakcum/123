@@ -81,7 +81,7 @@ class TabFinanceCostAjax {
                 'cost_category_slug' => $cost_category_slug,
                 'cost_category_name' => $cost_category_name,
                 'cost_category_values' => [
-                    date("H:i:s", strtotime('+3 hours'))  =>  $cost_form['cost_value']
+                    date("H:i:s", strtotime('+3 hours'))  =>  $cost_form['expenses_value']
                 ]
             ],
 
@@ -93,7 +93,7 @@ class TabFinanceCostAjax {
 
         wp_send_json_success(
             array(
-                '$result' => $result,
+                'result' => $cost_form,
             )
         );
 
@@ -102,14 +102,14 @@ class TabFinanceCostAjax {
 
     function set_new_category_cost() {
         parse_str($_POST['form'], $cost_form);
-        $cost_category_name = $cost_form['cost_category_name'];
+        $cost_category_name = $cost_form['expenses_category_name'];
         $cost_category_slug = helper()->backend->translit($cost_category_name);
         $data = [
             [
                 'cost_category_slug' => $cost_category_slug,
                 'cost_category_name' => $cost_category_name,
                 'cost_category_values' => [
-                    date("H:i:s", strtotime('+3 hours'))  =>  $cost_form['cost_value']
+                    date("H:i:s", strtotime('+3 hours'))  =>  $cost_form['expenses_value']
                 ]
             ]
         ];
