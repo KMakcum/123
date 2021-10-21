@@ -109,6 +109,17 @@ class TabFinanceCostTable {
         );
     }
 
+    /**
+     * Delete cache by version.
+     *
+     * @param int $product_id
+     */
+    public function delete_item_from_cache( $product_id ) {
+        global $wpdb;
+
+        $wpdb->query( $wpdb->prepare( "DELETE FROM {$this->table_name} WHERE `var_id` = %s", $product_id ) );
+    }
+
 
     /**
      * Возвращает данные по полю
@@ -124,9 +135,10 @@ class TabFinanceCostTable {
         $table_name = $wpdb->prefix . $table_name;
 
         $results = $wpdb->get_results( $wpdb->prepare(
-            'SELECT * FROM '.$table_name.' WHERE '.$field.' = %s', $value) );
+        /** @lang sql */ "SELECT * FROM `{$table_name}` WHERE %1s = %2s", $field, $value) );
         $results = json_decode(json_encode($results),true);
-        return $results;
+
+        return ( empty( $results ) ) ? [] : $results;
     }
 
     /**
@@ -148,10 +160,9 @@ class TabFinanceCostTable {
     }
 
     /**
-     * Возвращает массив расходов за определенный день
+     * Возвращает массив расходов для пользователя
      *
-     * @param $cost_cr_date
-     * @format 01.01.2000
+     * @param $user_id
      *
      * @return array
      */
