@@ -23,11 +23,11 @@ $cost_data_by_date = helper()->cost_table->get_data_by_date(date("d.m.Y", strtot
 
 
 ////////////////
-$cost_data_by_user = helper()->cost_table->get_data_by_user(get_current_user_id());
+$cost_data_by_user1 = helper()->cost_table->get_tf_table_field('tf_userdates',get_current_user_id(), 'id');
 
 
 get_user_meta(1);
-helper()->backend->print_arr($cost_data_by_date);
+helper()->backend->print_arr($cost_data_by_user);
 //helper()->backend->print_arr($cost_data);
 /////////////
 ?>
