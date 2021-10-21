@@ -135,8 +135,8 @@ class TabFinanceCostTable {
         $table_name = $wpdb->prefix . $table_name;
 
         $results = $wpdb->get_results( $wpdb->prepare(
-        /** @lang sql */ "SELECT * FROM `{$table_name}` WHERE %1s = %2s", $field, $value) );
-        $results = json_decode(json_encode($results),true);
+            'SELECT * FROM '.$table_name.' WHERE '.$field.' = %s', $value) , ARRAY_A);
+//        $results = json_decode(json_encode($results),true);
 
         return ( empty( $results ) ) ? [] : $results;
     }
@@ -169,10 +169,15 @@ class TabFinanceCostTable {
     function get_data_by_user($user_id)
     {
         $table_name = 'tf_userdates';
-        $data = $this->get_tf_table_field($table_name, $user_id )[0];
-        $data['cost_data'] = json_decode($data['cost_data'],true);
+        $data = $this->get_tf_table_field($table_name, $user_id ,'user_id' );
 
-        return $data;
+        $data_decode = [];
+        foreach ($data as $key => $data_item) {
+            $data_item['cost_data'] = json_decode($data_item['cost_data'],true);
+            $data_decode[$key] = $data_item;
+        }
+
+        return $data_decode;
     }
 
     /**
