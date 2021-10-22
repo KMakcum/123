@@ -21,7 +21,7 @@
 
 </head>
 <body <?php body_class(); ?>>
-<div class="wrapper 111111">
+<div class="wrapper">
 	<header>
 
 		<?php if ( has_nav_menu( 'header_menu' ) ) : ?>
