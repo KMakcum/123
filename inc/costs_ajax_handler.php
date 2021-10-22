@@ -87,13 +87,13 @@ class TabFinanceCostAjax {
 
         ];
 
-        $date_create = date("d.m.Y", strtotime('+3 hours'));
+        $date_create = date("j.n.Y", strtotime('+3 hours'));
         helper()->cost_table->insert_tf_userCat_table($cost_category_name);
         $result = helper()->cost_table->add_day_data($date_create, $data);
 
         wp_send_json_success(
             array(
-                'result' => $cost_form,
+                'result' => $result,
             )
         );
 
@@ -113,7 +113,7 @@ class TabFinanceCostAjax {
                 ]
             ]
         ];
-        $date_create = date("d.m.Y", strtotime('+3 hours'));
+        $date_create = date("j.n.Y", strtotime('+3 hours'));
         helper()->cost_table->insert_tf_userCat_table($cost_category_name);
         $result = helper()->cost_table->add_day_data($date_create, $data);
 

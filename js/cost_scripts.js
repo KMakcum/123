@@ -33,6 +33,12 @@ jQuery(document).ready(function(){
         });
     })
 
+    $('input.expenses_date__input').on('change', function () {
+        let date = $(this).val();
+        console. log(date)
+        change_period(date);
+    })
+
     $('.add_expenses_btn').on('click', function (e) {
         e.preventDefault();
         let costCategoryName = $(this).closest('.new__expenses_category').find('.new__expenses_category--name').text()
@@ -68,6 +74,10 @@ jQuery(document).ready(function(){
                 window.location.reload()
             },
         });
+    }
+
+    function change_period(date) {
+
     }
 
 });

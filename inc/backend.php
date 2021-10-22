@@ -63,12 +63,35 @@ class TabFinanceBackend {
 
 
     /**
-     * Собирает в расходы в читабельный массив
+     * Получает данные за период и складывает их в новый массив
      *
-     * @param array $arr
+     * @param array $cost_data_by_user
      *
      */
-    function f ($arr) {
-
+    function period_expenses  ($cost_data_by_user) {
+        if (!empty($cost_data_by_user) && isset($cost_data_by_user)){
+            $data_period_expenses = [];
+            foreach ($cost_data_by_user as $cost_data_by_day) {
+                foreach ($cost_data_by_day['cost_data'] as $key => $cost_item) {
+                    $total_amount = 0;
+                    foreach ($cost_item['cost_category_values'] as $cost_count) {
+                        $total_amount += (int)$cost_count;
+                    }
+                    if ($cost_item['cost_category_slug'] == $data_period_expenses[$key]['expenses_slug']) {
+                        $data_period_expenses[$key]['expenses_count'] = $data_period_expenses[$key]['expenses_count'] + $total_amount;
+                    } else {
+                        $data_period_new_expenses = [
+                            'expense_name'   => $cost_item['cost_category_name'],
+                            'expenses_slug'  => $cost_item['cost_category_slug'],
+                            'expenses_count' => $total_amount
+                        ];
+                        array_push($data_period_expenses, $data_period_new_expenses);
+                    }
+                }
+            }
+            return $data_period_expenses;
+        } else {
+            return false;
+        }
     }
 }

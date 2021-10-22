@@ -51,10 +51,11 @@ button{
     position: fixed;
     top: 0;
     right: 0;
-    width: 240px;
+    /*width: 240px;*/
     height: 100%;
     padding: 6px 14px;
     background: #fdf9f4;
+    overflow: auto;
 }
 .right_sidebar__header,
 .right_sidebar__body,
@@ -95,7 +96,7 @@ button{
 .right_sidebar__body ul.expenses_list {
 }
 .expenses_list li.expenses_category {
-    max-height: 100px;
+    /*max-height: 100px;*/
     margin: 0 5px;
     padding: 5px;
     font-size: 16px;
@@ -169,7 +170,15 @@ li.new__expenses_category .form_add__expenses_category input {
     margin-bottom: 10px;
     border: 1px solid var(--main-border-color);
 }
-
+.expenses_month {
+    margin: 20px 0;
+}
+.expenses_month .expenses_month__title {
+    text-align: center;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 15px;
+}
 
 
 

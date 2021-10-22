@@ -11,7 +11,7 @@
  * @since 1.0
  * @version 1.0
  */
-//todo: вывести все дни
+//todo: сделать только ID категории в ['cost_data'], остальные убрать
 //todo: добавлять записи на определенную дату
 //todo: удалять записи из базы
 
@@ -19,16 +19,16 @@ get_header(); ?>
 <?php
 $categories = helper()->cost_table->get_tf_table_field('tf_usercat', get_current_user_id(), 'user_id');
 $cost_data_by_user = helper()->cost_table->get_data_by_user(get_current_user_id());
-$cost_data_by_date = helper()->cost_table->get_data_by_date(date("d.m.Y", strtotime('+3 hours')));
+$cost_data_by_date = helper()->cost_table->get_data_by_date(date("j.n.Y", strtotime('+3 hours')));
 
 
 ////////////////
-$cost_data_by_user1 = helper()->cost_table->get_tf_table_field('tf_userdates',date("d.m.Y", strtotime('+3 hours')), 'cost_cr_date');
+$cost_data_by_user1 = helper()->cost_table->get_tf_table_field('tf_userdates',date("j.n.Y", strtotime('+3 hours')), 'cost_cr_date');
 
 
 get_user_meta(1);
-helper()->backend->print_arr($cost_data_by_user1);
-//helper()->backend->print_arr(date("d.m.Y", strtotime('+3 hours')));
+helper()->backend->print_arr($cost_data_by_user);
+//helper()->backend->print_arr(date("j.n.Y", strtotime('+3 hours')));
 /////////////
 ?>
     <div class="week-days__datepicker datepicker js-datepicker"></div><!-- / .datepicker -->
@@ -43,13 +43,13 @@ helper()->backend->print_arr($cost_data_by_user1);
             <div class="expenses_date__title">Потрачено за</div>
             <div class="expenses_date__field">
                 <input class="expenses_date__input" type="text" name="expenses_date__input"
-                       placeholder="<?php echo date("d.m.Y", strtotime('+3 hours'))?>"
-                       value="<?php echo date("d.m.Y", strtotime('+3 hours'))?>">
+                       placeholder="<?php echo date("j.n.Y", strtotime('+3 hours'))?>"
+                       value="<?php echo date("j.n.Y", strtotime('+3 hours'))?>">
             </div>
         </div>
     </div>
     <div class="right_sidebar__body">
-        <div class="expenses">
+        <div class="expenses_period">
             <ul class="expenses_list">
                 <?php if (!empty($cost_data_by_date['cost_data']) && isset($cost_data_by_date['cost_data'])){
                     foreach ($cost_data_by_date['cost_data'] as $cost_item) {?>
@@ -58,7 +58,7 @@ helper()->backend->print_arr($cost_data_by_user1);
                             <?php
                             $total_amount = 0;
                             foreach ($cost_item['cost_category_values'] as $cost_count) {
-                                $total_amount += $cost_count;
+                                $total_amount += (int)$cost_count;
                             }?>
                             <div class="category__amount">
                                 <?php echo $total_amount?>
@@ -104,6 +104,28 @@ helper()->backend->print_arr($cost_data_by_user1);
                 </li>
             </ul>
         </div>
+        <div class="expenses_month">
+            <div class="expenses_month__title">
+                Расходы за все время
+            </div>
+            <ul class="expenses_list">
+                <?php
+
+                if (!empty($cost_data_by_user) && isset($cost_data_by_user)){
+                    $period_expenses_data = helper()->backend->period_expenses($cost_data_by_user);
+
+                    foreach ($period_expenses_data as $expenses_item) { ?>
+                        <li class="expenses_category">
+                            <div class="category_name"><?php echo $expenses_item['expense_name']?></div>
+                            <div class="category__amount">
+                                <?php echo $expenses_item['expenses_count']?>
+                                <i class='bx bx-ruble' ></i>
+                            </div>
+                        </li>
+                    <?php }
+                } ?>
+            </ul>
+        </div>
     </div>
     <div class="right_sidebar__footer"></div>
 </div>
@@ -112,8 +134,8 @@ helper()->backend->print_arr($cost_data_by_user1);
             <div class="title_popup">Дата расходов</div>
             <div class="cost_date_input">
                 <input id="cost_date" class="title_date" type="text" name="cost_date"
-                       placeholder="<?php echo date("d.m.Y", strtotime('+3 hours'))?>"
-                       value="<?php echo date("d.m.Y", strtotime('+3 hours'))?>">
+                       placeholder="<?php echo date("j.n.Y", strtotime('+3 hours'))?>"
+                       value="<?php echo date("j.n.Y", strtotime('+3 hours'))?>">
             </div>
         </div>
         <div class="cost_popup__body">
