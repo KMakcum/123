@@ -78,6 +78,7 @@ jQuery(document).ready(function(){
 
     function change_period(date) {
 
+
     }
 
 });
